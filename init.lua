@@ -1,15 +1,20 @@
-KeyBoxSide = "right"
-print("Starting...")
-os.sleep(1)
+hostPC = 7
+container = 1
+-- Hostfile
 os.loadAPI("api/uTable.lua")
-while true do
-	uTable.init(1,1,.1,"Door System v1")
-	if  uTable.isKeyInserted(KeyBoxSide) == true then
-			if uTable.isKeyValid(KeyBoxSide) == true then
-					-- Code here...
-					uTable.useIt(KeyBoxSide)
-			else
-				uTable.spit(KeyBoxSide)
-			end
-	end
+function size()
+	-- Code here...
+	rednet.send(hostPC,size,"container"..container)
+end
+function containerSize()
+	-- Code here...
+	
+	return size
+end
+
+
+function seekRequest()
+	-- Code here...
+	id,msg,prot = rednet.receive("host")
+	return msg
 end
